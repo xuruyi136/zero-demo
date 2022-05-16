@@ -1,0 +1,29 @@
+/**
+* api语法示例及语法说明
+*/
+syntax = "v1"
+
+info(
+	author: "user-api"
+	date:   "2022-03-26"
+	desc:   "api语法示例及语法说明"
+)
+
+/* type UserInfoRequest {
+	UserId int64 `json:"userId"`
+	} */
+	// get请求 127.0.0.1:8888/user/info?userId=1
+	type UserInfoRequest {
+		UserId int64 `form:"userId"`
+	}
+	
+	type UserInfoResponse {
+		UserId   int64  `json:"userId"`
+		Nickname string `json:"nickname"`
+	}
+	
+	service user-api{
+		@doc "获取用户信息"
+		@handler userInfo
+		get /user/info (UserInfoRequest) returns (UserInfoResponse)
+	}

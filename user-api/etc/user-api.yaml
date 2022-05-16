@@ -1,0 +1,25 @@
+Name: user-api
+Host: 0.0.0.0
+Port: 8888
+
+
+UserRpcConf:
+  #wget https://github.com/etcd-io/etcd/releases/download/v3.5.4/etcd-v3.5.4-linux-amd64.tar.gz
+  #nohup ./etcd --listen-client-urls 'http://0.0.0.0:2379' --advertise-client-urls 'http://0.0.0.0:2379'  &
+  # Target: k8s://namespace/svc名:9001  k8s服务 p2c负载均衡  
+  Etcd:
+    Hosts:
+    - 121.196.195.242:2379
+    Key: user.rpc
+
+#logx.Info("")   => Level: info
+#logx.Error("")   => Level: error
+Log:
+  ServiceName: user-api
+  Model: console
+  Level: info
+  #打印堆栈信息
+  Encoding: plain
+
+DB: 
+  DataSource: root:123456@tcp(121.196.195.242:3306)/zero-demo?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
